@@ -15,7 +15,14 @@ function App() {
     const itemExist = cart.findIndex(guitar => guitar.id === item.id)
 
 
-   setcart(prevCart => [...prevCart, item])
+    if (itemExist >= 0) {
+      const updatedCart = [...cart]
+      updatedCart[itemExist].quantity++;
+      setcart(updatedCart)
+    } else {
+      item.quantity = 1;
+      setcart([...cart, item])
+    }
   }
 
   return (

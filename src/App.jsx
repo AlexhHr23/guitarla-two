@@ -10,6 +10,13 @@ function App() {
   const [data, setdata] = useState(db)
   const [cart, setcart] = useState([])
 
+  const addToCart = (item) => {
+
+    const itemExist = cart.findIndex(guitar => guitar.id === item.id)
+
+
+   setcart(prevCart => [...prevCart, item])
+  }
 
   return (
     <>
@@ -23,6 +30,7 @@ function App() {
               key={guitar.id}
               guitar={guitar}
               setCart={setcart}
+              addToCart={addToCart}
             />
           ))}
         </div>

@@ -9,6 +9,7 @@ function App() {
 
   const [data, setdata] = useState(db)
   const [cart, setcart] = useState([])
+  
 
   const addToCart = (item) => {
 
@@ -25,9 +26,13 @@ function App() {
     }
   }
 
+  const removeFromCart = (id) => {
+    setcart(prevCart => prevCart.filter(guitar => guitar.id !== id ))
+  }
+
   return (
     <>
-      <Header cart={cart}/>
+      <Header cart={cart} removeFromCart={removeFromCart}/>
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 

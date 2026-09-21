@@ -11,7 +11,7 @@ function App() {
     return localStorageCart ? JSON.parse(localStorageCart) : []
   }
 
-  const [data, setdata] = useState(db)
+  const [data] = useState(db)
   const [cart, setcart] = useState(intialCart)
 
   const MAX_ITEMS = 5

@@ -9,7 +9,9 @@ function App() {
 
   const [data, setdata] = useState(db)
   const [cart, setcart] = useState([])
-  
+
+  const MAX_ITEMS = 5
+
 
   const addToCart = (item) => {
 
@@ -27,12 +29,40 @@ function App() {
   }
 
   const removeFromCart = (id) => {
-    setcart(prevCart => prevCart.filter(guitar => guitar.id !== id ))
+    setcart(prevCart => prevCart.filter(guitar => guitar.id !== id))
   }
+
+  const increaseQuantity = (id) => {
+    const updatedCart = cart.map(item => {
+      if (item.id === id && item.quantity < MAX_ITEMS) {
+        return {
+          ...item,
+          quantity: item.quantity + 1
+        }
+      }
+      return item
+    })
+
+    setcart(updatedCart)
+  }
+
+  // const increaseQuantity = (id) => {
+  //   const updatedCart = cart.map(item => {
+  //     if (item.id === id && item.quantity < MAX_ITEMS) {
+  //       return {
+  //         ...item,
+  //         quantity: item.quantity + 1
+  //       }
+  //     }
+  //     return item
+  //   })
+
+  //   setcart(updatedCart)
+  // }
 
   return (
     <>
-      <Header cart={cart} removeFromCart={removeFromCart}/>
+      <Header cart={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 

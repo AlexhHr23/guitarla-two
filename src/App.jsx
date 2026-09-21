@@ -19,7 +19,7 @@ function App() {
     const itemExist = cart.findIndex(guitar => guitar.id === item.id)
 
     if (itemExist >= 0) {
-      if(cart[itemExist].quantity >= MAX_ITEMS) return
+      if (cart[itemExist].quantity >= MAX_ITEMS) return
       const updatedCart = [...cart]
       updatedCart[itemExist].quantity++;
       setcart(updatedCart)
@@ -61,9 +61,13 @@ function App() {
     setcart(updatedCart)
   }
 
+  const cleanCart = () => {
+    setcart([])
+  }
+
   return (
     <>
-      <Header cart={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
+      <Header cart={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} cleanCart={cleanCart} />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
